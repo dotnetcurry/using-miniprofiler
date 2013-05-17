@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Subject
+            </th>
+            <th>Description
+            </th>
+            <th>Start Date
+            </th>
+            <th>End Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: pageData()">
+        <tr>
+            <td data-bind="text: Subject"></td>
+            <td data-bind="text: Description"></td>
+            <td data-bind="date: StartDate"></td>
+            <td data-bind="date: EndDate"></td>
+            <td>
+                <a data-bind="attr: { href: '/TimeCard/Edit/' + Id() }">Edit</a>
+                <a data-bind="attr: { href: '/TimeCard/Details/' + Id() }">Details</a>
+                <a data-bind="attr: { href: '/TimeCard/Details/' + Id() }">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Page Size
+                <select id="rowsPerPage">
+                    <option value="5" selected="selected">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </th>
+            <td>
+                <div style="float: left;">
+                    <img class="ui-icon ui-widget-content ui-icon-triangle-1-w" id="prevPageButton" title="Previous" />
+                </div>
+                <div style="float: left">
+                    <img class="ui-icon ui-widget-content ui-icon-triangle-1-e" id="nextPageButton" title="Next" />
+                </div>
+            </td>
+            <td colspan="3"></td>
+        </tr>
+    </tfoot>
+</table>
+
+@section Scripts{
+    <script src="~/Scripts/knockout-2.2.1.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+    <script src="~/Scripts/paged-datalist-client.js"></script>
+    <script src="~/Scripts/paged-datalist-vm.js"></script>
+    <script src="~/Scripts/knockout.bindings.date.js"></script>
+}
